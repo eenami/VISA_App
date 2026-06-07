@@ -1,0 +1,30 @@
+# Java compiler output
+frontend/bin/
+*.class
+
+# SQLite local database and lock/journal files
+frontend/visa_app.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# IntelliJ IDEA IDE files
+.idea/
+*.iml
+out/
+
+# VS Code editor settings
+.vscode/
+
+# Eclipse project files
+.project
+.classpath
+.settings/
+
+# NetBeans project metadata
+nbproject/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
