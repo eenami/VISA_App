@@ -16,8 +16,8 @@ javac -cp "lib/sqlite-jdbc.jar" -d bin -encoding UTF-8 $javaFiles
 if ($LASTEXITCODE -eq 0) {
     Write-Host "Compilation Successful!" -ForegroundColor Green
     Write-Host "Launching Application..." -ForegroundColor Cyan
-    # Run application with SQLite JDBC in classpath
-    java -cp "bin;lib/sqlite-jdbc.jar" com.visa.app.Main
+    # Run application with SQLite JDBC in classpath and enable native access for unnamed modules
+    java --enable-native-access=ALL-UNNAMED -cp "bin;lib/sqlite-jdbc.jar" com.visa.app.Main
 } else {
     Write-Host "Compilation Failed with exit code $LASTEXITCODE." -ForegroundColor Red
 }
