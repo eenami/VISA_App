@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import com.visa.app.utils.BackendBridge;
 
 // Dummy public class to represent the file
 public class VisaUI {
@@ -1435,10 +1436,20 @@ class VisaApplicationWizard extends JPanel {
         boolean success;
         DatabaseManager db = DatabaseManager.getInstance();
         if (editingAppId == -1) {
-            success = db.saveApplication(app);
-        } else {
+        success = db.saveApplication(app);
+        // OOP Demo: build Applicant model and pass through BackendBridge
+        com.visa.app.model.Applicant oopApplicant = new com.visa.app.model.Applicant(
+            splitName(app.getFullName(), true),
+            splitName(app.getFullName(), false),
+            app.getBirthDate(), app.getEmail(),
+            app.getContactNumber(), app.getSex(),
+            app.getCitizenship(), app.getCivilStatus(),
+            app.getPlaceOfBirth(), app.getHomeAddress()
+        );
+            System.out.println("[OOP] " + oopApplicant.getProfileSummary());
+            } else {
             success = db.updateApplication(app);
-        }
+            }
 
         if (success) {
             String message = editingAppId == -1 ? 
@@ -1525,6 +1536,13 @@ class VisaApplicationWizard extends JPanel {
         tempDocList.clear();
 
         wizardCardLayout.show(wizardCardPanel, "PAGE_1");
+    }
+
+    private String splitName(String fullName, boolean firstPart) {
+    if (fullName == null || !fullName.contains(" ")) return fullName == null ? "" : fullName;
+    return firstPart
+        ? fullName.substring(0, fullName.indexOf(' '))
+        : fullName.substring(fullName.indexOf(' ') + 1);
     }
 }
 
@@ -1645,6 +1663,7 @@ class ApplicantDashboardPanel extends JPanel {
     public void refreshData() {
         tableModel.setRowCount(0);
         userAppsList = DatabaseManager.getInstance().getApplicationsByUserId(currentUser.getId());
+        BackendBridge.getInstance().getApplicantsWithPassportDetails(); // Q9: 3-table JOIN
         for (VisaApplication app : userAppsList) {
             tableModel.addRow(new Object[]{
                     app.getId(),
@@ -1847,6 +1866,7 @@ class AdminDashboardPanel extends JPanel {
     public void refreshData() {
         tableModel.setRowCount(0);
         applicationsList = DatabaseManager.getInstance().getAllApplications();
+        BackendBridge.getInstance().getApplicationsWithDocumentCount(); // Q6: JOIN + COUNT
         for (VisaApplication app : applicationsList) {
             tableModel.addRow(new Object[]{
                     app.getId(),
@@ -1893,7 +1913,10 @@ class AdminDashboardPanel extends JPanel {
             );
 
             if (confirm == JOptionPane.YES_OPTION) {
-                boolean success = DatabaseManager.getInstance().updateApplicationStatus(app.getId(), status);
+                boolean success = BackendBridge.getInstance().approveApplication(app.getId());
+                if ("DENIED".equalsIgnoreCase(status)) {
+                success = BackendBridge.getInstance().denyApplication(app.getId());
+                }
                 if (success) {
                     JOptionPane.showMessageDialog(this, "Application status successfully updated to " + status + ".", "Status Updated", JOptionPane.INFORMATION_MESSAGE);
                     refreshData();
