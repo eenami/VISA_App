@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<VisaApplications>
+    <VisaApplication id="2" status="APPROVED">
+        <PersonalInformation>
+            <FullName>Denmar Antonio Bautista</FullName>
+            <Sex>Male</Sex>
+            <Citizenship>Nigerian</Citizenship>
+            <CivilStatus>Single</CivilStatus>
+            <BirthDate>2006/05/23</BirthDate>
+            <PlaceOfBirth>Marikina</PlaceOfBirth>
+            <Email>den@gmail.com</Email>
+            <ContactNumber>+63 696969696</ContactNumber>
+            <HomeAddress>Marikina Ey</HomeAddress>
+        </PersonalInformation>
+        <FamilyInformation>
+            <FatherName>Dada Bautista</FatherName>
+            <MotherName>Mama Bautista</MotherName>
+            <SpouseName>Secret</SpouseName>
+            <WithChildren>false</WithChildren>
+        </FamilyInformation>
+        <EmploymentInformation>
+            <Occupation>Macho Dancer</Occupation>
+            <EmployerOfficeAddress>Si Tito</EmployerOfficeAddress>
+        </EmploymentInformation>
+        <TravelDocuments>
+            <Document>
+                <Type>Original Passport</Type>
+                <PassportNumber>NG11111</PassportNumber>
+                <IssuingAuthority>Nigeria</IssuingAuthority>
+                <DateIssued>2017/03/31</DateIssued>
+                <ValidityDate>2027/03/31</ValidityDate>
+            </Document>
+        </TravelDocuments>
+    </VisaApplication>
+    <VisaApplication id="1" status="APPROVED">
+        <PersonalInformation>
+            <FullName>Harold Benedict Odvina Hernandez</FullName>
+            <Sex>Male</Sex>
+            <Citizenship>American</Citizenship>
+            <CivilStatus>Single</CivilStatus>
+            <BirthDate>2006/02/25</BirthDate>
+            <PlaceOfBirth>Texas, US</PlaceOfBirth>
+            <Email>haroldbenedicthernandez@gmail.com</Email>
+            <ContactNumber>+63 9109386678</ContactNumber>
+            <HomeAddress>Austin Boulevard, Texas, United States</HomeAddress>
+        </PersonalInformation>
+        <FamilyInformation>
+            <FatherName>Herman Hernandez</FatherName>
+            <MotherName>Rosa Hernandez</MotherName>
+            <SpouseName>N/A</SpouseName>
+            <WithChildren>false</WithChildren>
+        </FamilyInformation>
+        <EmploymentInformation>
+            <Occupation/>
+            <EmployerOfficeAddress/>
+        </EmploymentInformation>
+        <TravelDocuments>
+            <Document>
+                <Type>Original Passport</Type>
+                <PassportNumber>US10000</PassportNumber>
+                <IssuingAuthority>America</IssuingAuthority>
+                <DateIssued>2025/03/31</DateIssued>
+                <ValidityDate>2035/03/31</ValidityDate>
+            </Document>
+        </TravelDocuments>
+    </VisaApplication>
+</VisaApplications>
